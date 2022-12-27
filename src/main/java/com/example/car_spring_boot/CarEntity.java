@@ -13,7 +13,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Car {
+public class CarEntity {
 
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
@@ -24,7 +24,7 @@ public class Car {
     @Column(name = "MODEL")
     private String model;
     @Column(name = "YEAR")
-    private int year;
+    private Integer year;
 
 }
 

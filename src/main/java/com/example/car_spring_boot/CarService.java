@@ -18,33 +18,40 @@ public class CarService {
 
 
 
-    @GetMapping
-    public List<Car> carList() {
+    @GetMapping("/list")
+    public List<CarEntity> carList() {
         return carRepository.findAll();
     }
 
-    @GetMapping("/{id}")
-    public Optional<Car> getCarById(@PathVariable Integer id) {
+    @GetMapping("/get/{id}")
+    public Optional<CarEntity> getCarById(@PathVariable Integer id) {
         return carRepository.findById(id);
     }
 
-    @PostMapping
-    public Car addCar(@RequestBody Car car) {
+    @PostMapping("/create")
+    public CarEntity createCar(@RequestBody CreateCar createCar) {
+
+        CarEntity car = new CarEntity(
+                createCar.getId(),
+                createCar.getMaker(),
+                createCar.getModel(),
+                createCar.getYear()
+        );
         carRepository.save(car);
         return car;
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public Void deleteCarById(@PathVariable Integer id) {
         carRepository.deleteById(id);
         return null;
     }
 
-    @PutMapping("/{id}")
-    public Car updateCarById(@PathVariable int id, @RequestBody Car car)  {
-        car.setId(id);
-        carRepository.save(car);
-        return car;
+    @PutMapping("/update/{id}")
+    public CarEntity updateCarById(@PathVariable int id, @RequestBody CarEntity carEntity)  {
+        carEntity.setId(id);
+        carRepository.save(carEntity);
+        return carEntity;
     }
 
 }

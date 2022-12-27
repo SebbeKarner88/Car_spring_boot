@@ -13,25 +13,25 @@ public class CarConfig {
     CommandLineRunner commandLineRunner (CarRepository carRepository) {
         return args -> {
 
-            Car car1 = new Car(
+            CarEntity carEntity1 = new CarEntity(
                     1,
                     "Ford",
                     "Escape",
                     1992
             );
-            Car car2 = new Car(
+            CarEntity carEntity2 = new CarEntity(
                     2,
                     "Lamborghini",
                     "Countach",
                     1988
             );
-            Car car3 = new Car(
+            CarEntity carEntity3 = new CarEntity(
                     3,
                     "Volvo",
                     "V90",
                     2022
             );
-            carRepository.saveAll(List.of(car1, car2, car3));
+            carRepository.saveAll(List.of(carEntity1, carEntity2, carEntity3));
         };
     }
 }

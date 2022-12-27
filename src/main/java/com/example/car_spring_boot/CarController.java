@@ -18,29 +18,29 @@ public class CarController {
 
 
 
-    @GetMapping
-    public List<Car> carList() {
+    @GetMapping("/list")
+    public List<CarEntity> carList() {
         return carService.carList();
     }
 
-    @GetMapping("/{id}")
-    public Optional<Car> getCarById(@PathVariable int id) {
+    @GetMapping("/get/{id}")
+    public Optional<CarEntity> getCarById(@PathVariable int id) {
         return carService.getCarById(id);
     }
 
-    @PostMapping
-    public Car addCar(@RequestBody Car car) {
-        return carService.addCar(car);
+    @PostMapping("/create")
+    public CarEntity createCar(@RequestBody CreateCar createCar) {
+        return carService.createCar(createCar);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public Void deleteCarById(@PathVariable int id) {
         return carService.deleteCarById(id);
     }
 
-    @PutMapping("/{id}")
-    public Car updateCarById(@PathVariable int id, @RequestBody Car car)  {
-        return carService.updateCarById(id,car);
+    @PutMapping("/update/{id}")
+    public CarEntity updateCarById(@PathVariable int id, @RequestBody CarEntity carEntity)  {
+        return carService.updateCarById(id, carEntity);
     }
 
 }
