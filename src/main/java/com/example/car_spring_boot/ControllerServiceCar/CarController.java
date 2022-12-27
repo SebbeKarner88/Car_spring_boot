@@ -1,5 +1,8 @@
-package com.example.car_spring_boot;
+package com.example.car_spring_boot.ControllerServiceCar;
 
+import com.example.car_spring_boot.EntityConfigCar.CarEntity;
+import com.example.car_spring_boot.CreateUpdateCar.CreateCar;
+import com.example.car_spring_boot.CreateUpdateCar.UpdateCar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,8 +42,8 @@ public class CarController {
     }
 
     @PutMapping("/update/{id}")
-    public CarEntity updateCarById(@PathVariable int id, @RequestBody CarEntity carEntity)  {
-        return carService.updateCarById(id, carEntity);
+    public CarEntity updateCarById(@PathVariable int id, @RequestBody UpdateCar updateCar)  {
+        return carService.updateCarById(id, updateCar);
     }
 
 }

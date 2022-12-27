@@ -1,5 +1,6 @@
-package com.example.car_spring_boot;
+package com.example.car_spring_boot.EntityConfigCar;
 
+import com.example.car_spring_boot.CarRepository.CarRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

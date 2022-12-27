@@ -1,5 +1,6 @@
-package com.example.car_spring_boot;
+package com.example.car_spring_boot.CarRepository;
 
+import com.example.car_spring_boot.EntityConfigCar.CarEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

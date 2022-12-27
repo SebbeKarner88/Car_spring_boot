@@ -1,4 +1,4 @@
-package com.example.car_spring_boot;
+package com.example.car_spring_boot.EntityConfigCar;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
