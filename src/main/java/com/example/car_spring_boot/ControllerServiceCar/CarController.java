@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/car")
@@ -27,7 +26,7 @@ public class CarController {
     }
 
     @GetMapping("/get/{id}")
-    public Optional<CarEntity> getCarById(@PathVariable int id) {
+    public CarEntity getCarById(@PathVariable int id) {
         return carService.getCarById(id);
     }
 

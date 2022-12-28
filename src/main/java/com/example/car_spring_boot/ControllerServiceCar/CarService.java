@@ -27,8 +27,15 @@ public class CarService {
     }
 
 
-    public Optional<CarEntity> getCarById(Integer id) {
-        return carRepository.findById(id);
+    public CarEntity getCarById(Integer id) {
+
+        Optional<CarEntity> OpCar = carRepository.findById(id);
+
+        if (OpCar.isEmpty()){
+            throw new IllegalStateException("Id finns inte");
+        }
+
+        return OpCar.get();
     }
 
 
