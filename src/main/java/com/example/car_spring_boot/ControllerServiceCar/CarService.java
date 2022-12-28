@@ -6,7 +6,6 @@ import com.example.car_spring_boot.CreateUpdateCar.CreateCar;
 import com.example.car_spring_boot.CreateUpdateCar.UpdateCar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,17 +21,17 @@ public class CarService {
 
 
 
-    @GetMapping("/list")
+
     public List<CarEntity> carList() {
         return carRepository.findAll();
     }
 
-    @GetMapping("/get/{id}")
-    public Optional<CarEntity> getCarById(@PathVariable Integer id) {
+
+    public Optional<CarEntity> getCarById(Integer id) {
         return carRepository.findById(id);
     }
 
-    @PostMapping("/create")
+
     public CarEntity createCar(CreateCar createCar) {
 
         CarEntity car = new CarEntity(
@@ -45,13 +44,12 @@ public class CarService {
         return car;
     }
 
-    @DeleteMapping("/delete/{id}")
-    public Void deleteCarById(@PathVariable Integer id) {
+
+    public Void deleteCarById(Integer id) {
         carRepository.deleteById(id);
         return null;
     }
 
-    @PutMapping("/update/{id}")
     public CarEntity updateCarById(int id, UpdateCar updateCar) {
 
         CarEntity newCar = new CarEntity();
