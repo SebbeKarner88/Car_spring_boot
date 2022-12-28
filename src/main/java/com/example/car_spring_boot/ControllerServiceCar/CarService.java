@@ -53,6 +53,12 @@ public class CarService {
 
 
     public Void deleteCarById(Integer id) {
+        Optional<CarEntity> OpCar = carRepository.findById(id);
+
+        if (OpCar.isEmpty()){
+            throw new IllegalStateException("Id finns inte");
+        }
+
         carRepository.deleteById(id);
         return null;
     }
