@@ -32,7 +32,13 @@ public class CarConfig {
                     "V90",
                     2022
             );
-            carRepository.saveAll(List.of(carEntity1, carEntity2, carEntity3));
+            CarEntity carEntity4 = new CarEntity(
+                    3,
+                    "Ferrari",
+                    "Testarossa",
+                    1984
+            );
+            carRepository.saveAll(List.of(carEntity1, carEntity2, carEntity3, carEntity4));
         };
     }
 }
