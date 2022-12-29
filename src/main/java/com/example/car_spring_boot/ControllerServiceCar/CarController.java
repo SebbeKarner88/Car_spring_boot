@@ -24,7 +24,7 @@ public class CarController {
 
 
 
-    /**############ GET STUDENT LIST WITH DTO ################################### **/
+    /**############ GET CAR LIST WITH DTO ####################################### **/
     @GetMapping("/list")
     public List<CarResponseDTO> carList() {
         return carService.carList()
@@ -32,24 +32,29 @@ public class CarController {
                 .map(this::carEntityToCarResponseDTO)
                 .collect(Collectors.toList());
     }
-    /**############ GET STUDENT LIST WITH DTO ################################### **/
+    /**############ GET CAR LIST WITH DTO ####################################### **/
 
 
+
+    /**############ GET CAR BY ID WITH DTO ###################################### **/
     @GetMapping("/get/{id}")
-    public CarEntity getCarById(@PathVariable int id) {
-        return carService.getCarById(id);
+    public CarResponseDTO getCarByIdDTO(@PathVariable int id) {
+        return carEntityToCarResponseDTO(carService.getCarByIdDTO(id));
     }
+    /**############ GET CAR BY ID WITH DTO ###################################### **/
 
 
+    /**############ DELETE CAR BY ID  ########################################### **/
     @DeleteMapping("/delete/{id}")
     public Void deleteCarById(@PathVariable int id) {
-        return carService.deleteCarById(id);
+         carService.deleteCarById(id);
+        return null;
     }
-
+    /**############ DELETE CAR BY ID  ########################################### **/
 
 
     /** ############ UPDATE CAR WITH DTO AND REQUEST/RESPONSE ################# **/
-    @PutMapping(path = "/update/DTO/{id}")
+    @PutMapping(path = "/update/{id}")
     public CarResponseDTO updateCarDTO(@RequestBody CarRequestDTO carRequestDTO, @PathVariable("id") Integer id) {
 
         return carService.updateCarDTO(id, carRequestDTO)
@@ -59,9 +64,8 @@ public class CarController {
     /** ############ UPDATE CAR WITH DTO AND REQUEST/RESPONSE ################# **/
 
 
-
     /**############ CREATE STUDENT WITH DTO ################################### **/
-    @PostMapping(path = "/create/DTO")
+    @PostMapping(path = "/create")
     public CarResponseDTO createCarDTO(@RequestBody CarRequestDTO carRequestDTO) {
 
         return carService.createCarDTO(carRequestDTO)

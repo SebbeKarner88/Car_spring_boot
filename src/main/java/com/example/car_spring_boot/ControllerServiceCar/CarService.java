@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import javax.annotation.processing.Messager;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,33 +22,37 @@ public class CarService {
     }
     /** ############## REPOSITORY CONNECTION ##################################### **/
 
+
+
     /**############ GET STUDENT LIST WITH DTO ################################### **/
     public List<CarEntity> carList() {
         return carRepository.findAll();
     }
     /**############ GET STUDENT LIST WITH DTO ################################### **/
 
-    public CarEntity getCarById(Integer id) {
+
+    /**############ GET CAR BY ID WITH DTO ###################################### **/
+    public CarEntity getCarByIdDTO(Integer id) {
 
         Optional<CarEntity> OpCar = carRepository.findById(id);
 
         if (OpCar.isEmpty()){
             throw new IllegalStateException("Id finns inte");
         }
-
         return OpCar.get();
     }
+    /**############ GET CAR BY ID WITH DTO ###################################### **/
 
-    public Void deleteCarById(Integer id) {
+
+    /**############ DELETE CAR BY ID  ########################################### **/
+    public void deleteCarById(Integer id) {
         Optional<CarEntity> OpCar = carRepository.findById(id);
-
         if (OpCar.isEmpty()){
             throw new IllegalStateException("Id finns inte");
         }
-
         carRepository.deleteById(id);
-        return null;
     }
+    /**############ DELETE CAR BY ID  ########################################### **/
 
 
     /** ############ UPDATE CAR WITH DTO AND REQUEST/RESPONSE ################# **/
@@ -67,7 +72,6 @@ public class CarService {
 
     }
     /** ############ UPDATE CAR WITH DTO AND REQUEST/RESPONSE ################# **/
-
 
 
     /**############ CREATE STUDENT WITH DTO ################################### **/
