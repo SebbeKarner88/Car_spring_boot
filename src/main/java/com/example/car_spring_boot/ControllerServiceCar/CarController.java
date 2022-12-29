@@ -15,7 +15,6 @@ public class CarController {
 
     /**############## CARSERVICE CONNECTION ##################################### **/
     private final CarService carService;
-
     @Autowired
     public CarController(CarService carService) {
         this.carService = carService;
@@ -33,7 +32,6 @@ public class CarController {
                 .collect(Collectors.toList());
     }
     /**############ GET CAR LIST WITH DTO ####################################### **/
-
 
 
     /**############ GET CAR BY ID WITH DTO ###################################### **/
