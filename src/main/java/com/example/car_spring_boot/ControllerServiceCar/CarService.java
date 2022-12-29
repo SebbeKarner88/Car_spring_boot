@@ -39,7 +39,7 @@ public class CarService {
     }
 
 
-    public CarEntity createCar(CreateCar createCar) {
+    public CarEntity createCarDTO(CreateCar createCar) {
 
         CarEntity car = new CarEntity(
                 createCar.getId(),
@@ -63,7 +63,7 @@ public class CarService {
         return null;
     }
 
-    public CarEntity updateCarById(int id, UpdateCar updateCar) {
+    public CarEntity updateCarByIdDTO(int id, UpdateCar updateCar) {
 
         CarEntity newCar = new CarEntity();
 

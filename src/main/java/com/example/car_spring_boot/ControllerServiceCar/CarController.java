@@ -31,8 +31,8 @@ public class CarController {
     }
 
     @PostMapping("/create")
-    public CarEntity createCar(@RequestBody CreateCar createCar) {
-        return carService.createCar(createCar);
+    public CarEntity createCarDTO(@RequestBody CreateCar createCar) {
+        return carService.createCarDTO(createCar);
     }
 
     @DeleteMapping("/delete/{id}")
@@ -41,8 +41,8 @@ public class CarController {
     }
 
     @PutMapping("/update/{id}")
-    public CarEntity updateCarById(@PathVariable int id, @RequestBody UpdateCar updateCar)  {
-        return carService.updateCarById(id, updateCar);
+    public CarEntity updateCarByIdDTO(@PathVariable int id, @RequestBody UpdateCar updateCar)  {
+        return carService.updateCarByIdDTO(id, updateCar);
     }
 
 }

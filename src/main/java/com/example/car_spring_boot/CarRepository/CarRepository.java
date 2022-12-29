@@ -7,4 +7,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CarRepository extends JpaRepository <CarEntity, Integer>{
 
+    /** Här kan vi lägga in kommandon för att skapa specifika sökfunktioner. **/
+
+
 }
