@@ -7,23 +7,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/car")
 public class CarController {
 
+    /**############## CARSERVICE CONNECTION ##################################### **/
     private final CarService carService;
 
     @Autowired
     public CarController(CarService carService) {
         this.carService = carService;
     }
+    /**############## CARSERVICE CONNECTION ##################################### **/
 
 
+
+    /**############ GET STUDENT LIST WITH DTO ################################### **/
     @GetMapping("/list")
-    public List<CarEntity> carList() {
-        return carService.carList();
+    public List<CarResponseDTO> carList() {
+        return carService.carList()
+                .stream()
+                .map(this::carEntityToCarResponseDTO)
+                .collect(Collectors.toList());
     }
+    /**############ GET STUDENT LIST WITH DTO ################################### **/
+
 
     @GetMapping("/get/{id}")
     public CarEntity getCarById(@PathVariable int id) {
@@ -37,11 +47,10 @@ public class CarController {
     }
 
 
+
     /** ############ UPDATE CAR WITH DTO AND REQUEST/RESPONSE ################# **/
     @PutMapping(path = "/update/DTO/{id}")
-    public CarResponseDTO updateCarDTO(
-            @RequestBody CarRequestDTO carRequestDTO,
-            @PathVariable("id") Integer id) {
+    public CarResponseDTO updateCarDTO(@RequestBody CarRequestDTO carRequestDTO, @PathVariable("id") Integer id) {
 
         return carService.updateCarDTO(id, carRequestDTO)
                 .map(this::carEntityToCarResponseDTO)
@@ -50,16 +59,17 @@ public class CarController {
     /** ############ UPDATE CAR WITH DTO AND REQUEST/RESPONSE ################# **/
 
 
+
     /**############ CREATE STUDENT WITH DTO ################################### **/
     @PostMapping(path = "/create/DTO")
-    public CarResponseDTO createCarDTO(
-            @RequestBody CarRequestDTO carRequestDTO) {
+    public CarResponseDTO createCarDTO(@RequestBody CarRequestDTO carRequestDTO) {
 
         return carService.createCarDTO(carRequestDTO)
                 .map(this::carEntityToCarResponseDTO)
                 .orElse(null);
     }
     /**############ CREATE STUDENT WITH DTO ################################### **/
+
 
 
     /** ############ CAR-ENTITY TO CAR-RESPONSE DTO CONVERTER ################# **/

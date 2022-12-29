@@ -13,17 +13,19 @@ import java.util.Optional;
 @Service
 public class CarService {
 
+    /** ############## REPOSITORY CONNECTION ##################################### **/
     private final CarRepository carRepository;
     @Autowired
     public CarService(CarRepository carRepository) {
         this.carRepository = carRepository;
     }
+    /** ############## REPOSITORY CONNECTION ##################################### **/
 
-
+    /**############ GET STUDENT LIST WITH DTO ################################### **/
     public List<CarEntity> carList() {
         return carRepository.findAll();
     }
-
+    /**############ GET STUDENT LIST WITH DTO ################################### **/
 
     public CarEntity getCarById(Integer id) {
 
@@ -47,6 +49,7 @@ public class CarService {
         return null;
     }
 
+
     /** ############ UPDATE CAR WITH DTO AND REQUEST/RESPONSE ################# **/
     public Optional<CarEntity> updateCarDTO(Integer id, CarRequestDTO carRequestDTO) {
 
@@ -64,6 +67,7 @@ public class CarService {
 
     }
     /** ############ UPDATE CAR WITH DTO AND REQUEST/RESPONSE ################# **/
+
 
 
     /**############ CREATE STUDENT WITH DTO ################################### **/
