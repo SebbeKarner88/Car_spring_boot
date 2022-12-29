@@ -6,8 +6,6 @@ import com.example.car_spring_boot.CarRepository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
-import javax.annotation.processing.Messager;
 import java.util.List;
 import java.util.Optional;
 

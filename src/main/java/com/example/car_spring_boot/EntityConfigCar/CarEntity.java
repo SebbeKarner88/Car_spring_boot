@@ -8,7 +8,6 @@ import lombok.Setter;
 
 import static jakarta.persistence.GenerationType.SEQUENCE;
 
-
 @Entity(name = "Car")
 @Table(name = "car")
 @Getter
@@ -34,6 +33,5 @@ public class CarEntity {
     private String model;
     @Column(name = "YEAR")
     private Integer year;
-
 
 }
