@@ -1,11 +1,11 @@
 package com.example.car_spring_boot.ControllerServiceCar;
 
+import com.example.car_spring_boot.DTOPackage.CarRequestDTO;
 import com.example.car_spring_boot.EntityConfigCar.CarEntity;
 import com.example.car_spring_boot.CarRepository.CarRepository;
-import com.example.car_spring_boot.CreateUpdateCar.CreateCar;
-import com.example.car_spring_boot.CreateUpdateCar.UpdateCar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 import java.util.List;
 import java.util.Optional;
@@ -18,8 +18,6 @@ public class CarService {
     public CarService(CarRepository carRepository) {
         this.carRepository = carRepository;
     }
-
-
 
 
     public List<CarEntity> carList() {
@@ -38,20 +36,6 @@ public class CarService {
         return OpCar.get();
     }
 
-
-    public CarEntity createCarDTO(CreateCar createCar) {
-
-        CarEntity car = new CarEntity(
-                createCar.getId(),
-                createCar.getMaker(),
-                createCar.getModel(),
-                createCar.getYear()
-        );
-        carRepository.save(car);
-        return car;
-    }
-
-
     public Void deleteCarById(Integer id) {
         Optional<CarEntity> OpCar = carRepository.findById(id);
 
@@ -63,26 +47,37 @@ public class CarService {
         return null;
     }
 
-    public CarEntity updateCarByIdDTO(int id, UpdateCar updateCar) {
+    /** ############ UPDATE CAR WITH DTO AND REQUEST/RESPONSE ################# **/
+    public Optional<CarEntity> updateCarDTO(Integer id, CarRequestDTO carRequestDTO) {
 
-        CarEntity newCar = new CarEntity();
+        return carRepository.findById(id)
+                .map(carEntity -> {
+                    if (carRequestDTO.getMaker() != null)
+                        carEntity.setMaker(carRequestDTO.getMaker());
+                    if (carRequestDTO.getModel() != null)
+                        carEntity.setModel(carRequestDTO.getModel());
+                    if (carRequestDTO.getYear() != null)
+                        carEntity.setYear(carRequestDTO.getYear());
+                    carRepository.save(carEntity);
+                    return carEntity;
+                });
 
-        Optional<CarEntity> oldCar = carRepository.findById(id);
-
-        if (oldCar.isPresent()) {
-        newCar = oldCar.get();
-
-            if (updateCar.getMaker() != null && !updateCar.getMaker().equals(newCar.getMaker())){
-                newCar.setMaker(updateCar.getMaker());
-            }
-            if (updateCar.getModel() != null && !updateCar.getModel().equals(newCar.getModel())){
-                newCar.setModel(updateCar.getModel());
-            }
-            if (updateCar.getYear() != null && !updateCar.getYear().equals(newCar.getYear())){
-                newCar.setYear(updateCar.getYear());
-            }
-        }
-        carRepository.save(newCar);
-        return newCar;
     }
+    /** ############ UPDATE CAR WITH DTO AND REQUEST/RESPONSE ################# **/
+
+
+    /**############ CREATE STUDENT WITH DTO ################################### **/
+    public Optional<CarEntity> createCarDTO(CarRequestDTO carRequestDTO) {
+
+        CarEntity car = new CarEntity(
+                null,
+                carRequestDTO.getMaker(),
+                carRequestDTO.getModel(),
+                carRequestDTO.getYear()
+        );
+        carRepository.save(car);
+        return Optional.of(car);
+    }
+    /**############ CREATE STUDENT WITH DTO ################################### **/
+
 }

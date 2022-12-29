@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import static jakarta.persistence.GenerationType.SEQUENCE;
+
 
 @Entity(name = "Car")
 @Table(name = "car")
@@ -16,8 +18,15 @@ import lombok.Setter;
 public class CarEntity {
 
     @Id
-    @GeneratedValue( strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
+    @SequenceGenerator(
+            name = "car_sequence",
+            sequenceName = "car_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = SEQUENCE,
+            generator = "car_sequence"
+    )
     private Integer id;
     @Column(name = "MAKER")
     private String maker;
@@ -26,5 +35,5 @@ public class CarEntity {
     @Column(name = "YEAR")
     private Integer year;
 
-}
 
+}
